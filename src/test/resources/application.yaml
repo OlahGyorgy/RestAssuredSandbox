@@ -1,0 +1,27 @@
+#spring:
+#  profiles:
+#    active: local
+#---
+#spring:
+#  profiles: local
+#base:
+#  url: https://petstore.swagger.io
+#---
+#spring:
+#  profiles: local2
+#base:
+#  url: https://petstore2.swagger.io
+#---
+#report:
+#  add:
+#    sourceFolderTimestamp: true
+#    fileTimestamp: false
+#    path: .//target/Report/SandboxProjectReport
+#    fileName: sandbox
+#    strategy: SUITE
+#spring:
+#  datasource:
+#    url:
+#    userName:
+#    password:
+#    crossDatabase:
