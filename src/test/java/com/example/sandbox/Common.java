@@ -4,12 +4,26 @@ import io.restassured.response.Response;
 
 import java.util.Map;
 
-import static com.example.sandbox.Endpoints.baseUrl;
 import static io.restassured.RestAssured.given;
 
-public class Common{
+public class Common extends Endpoints {
 
     //----------------------------------GET----------------------------------
+    public Response getUrl(String endpoint){
+
+
+        return given()
+                .relaxedHTTPSValidation()
+                .and()
+                .log().everything()
+                .when()
+                .get(baseUrl+endpoint)
+                .then()
+                .log()
+                .all()
+                .extract().response();
+
+    }
     public Response getUrl(String endpoint, Map<String, String> queryParam ){
 
 
@@ -45,6 +59,23 @@ public class Common{
     }
 
     //----------------------------------POST----------------------------------
+    public Response postUrl(String endpoint,String body){
+
+
+        return given()
+                .relaxedHTTPSValidation()
+                .contentType("application/json; charset=UTF-8")
+                .body(body)
+                .and()
+                .log().everything()
+                .when()
+                .post(baseUrl+endpoint)
+                .then()
+                .log()
+                .all()
+                .extract().response();
+
+    }
 
     //----------------------------------PUT----------------------------------
 
