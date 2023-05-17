@@ -1,4 +1,4 @@
-package com.example.sandbox;
+package com.example.sandbox.util;
 
 import io.restassured.response.Response;
 import org.junit.Assert;
