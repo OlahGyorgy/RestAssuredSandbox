@@ -6,13 +6,16 @@ import com.example.sandbox.util.swagger.definitions.Item;
 import com.example.sandbox.util.swagger.definitions.PetBody;
 import io.restassured.response.Response;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import utils.report.TestListener;
 
 import static com.example.sandbox.util.Tools.generateRandomNumber;
 import static com.example.sandbox.util.body.pet.JsonBody.createJsonBody;
 import static com.example.sandbox.util.constans.Tags.SMOKE;
 import static com.example.sandbox.util.constans.TestData.HYDRAIMAGE;
 
+@Listeners(TestListener.class)
 public class PetLifeCycle extends Common {
     @Test(enabled = true,groups = {SMOKE},description ="description")
     public void Test1(){
@@ -40,7 +43,7 @@ public class PetLifeCycle extends Common {
 
         String id = response.jsonPath().get("id").toString();
 
-        Response  response2 = getUrl(petById+id);
+        Response  response2 = getUrl(petById.replace("{petId}",id));
         Assert.assertEquals(response2.getStatusCode(),200,"Invalid response code");
 
 

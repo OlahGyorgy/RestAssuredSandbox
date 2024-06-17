@@ -1,12 +1,22 @@
 package com.example.sandbox;
 
 import io.restassured.response.Response;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.ITestContext;
+import org.testng.annotations.BeforeMethod;
+import utils.report.ReportingFilter;
 
 import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
+@SpringBootTest
 public class Common extends Endpoints {
+
+    protected ReportingFilter filter;
+
+    @BeforeMethod(alwaysRun = true)
+    public void baseBeforeMethod(ITestContext context) {filter = new ReportingFilter(context);}
 
     //----------------------------------GET----------------------------------
     public Response getUrl(String endpoint){
@@ -15,12 +25,10 @@ public class Common extends Endpoints {
         return given()
                 .relaxedHTTPSValidation()
                 .and()
-                .log().everything()
+                .filter(filter)
                 .when()
                 .get(baseUrl+endpoint)
                 .then()
-                .log()
-                .all()
                 .extract().response();
 
     }
@@ -29,14 +37,17 @@ public class Common extends Endpoints {
 
         return given()
                 .relaxedHTTPSValidation()
-                .params(queryParam)
+                .headers("correlationId","lofasz a seggedbe")
+                .cookie("session_id", "abc123")
+                .param("asd","geeca")
+                .formParam("asd","shitfaced")
+               // .multiPart("file", "example.txt", "text/plain")
+                .queryParams(queryParam)
                 .and()
-                .log().everything()
+                .filter(filter)
                 .when()
                 .get(baseUrl+endpoint)
                 .then()
-                .log()
-                .all()
                 .extract().response();
 
     }
@@ -48,12 +59,10 @@ public class Common extends Endpoints {
                 .params(queryParam)
                 .headers(headers)
                 .and()
-                .log().all()
+                .filter(filter)
                 .when()
                 .get(baseUrl+endpoint)
                 .then()
-                .log()
-                .all()
                 .extract().response();
 
     }
@@ -67,12 +76,10 @@ public class Common extends Endpoints {
                 .contentType("application/json; charset=UTF-8")
                 .body(body)
                 .and()
-                .log().everything()
+                .filter(filter)
                 .when()
                 .post(baseUrl+endpoint)
                 .then()
-                .log()
-                .all()
                 .extract().response();
 
     }
