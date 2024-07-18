@@ -18,13 +18,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.ITestContext;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class ReportingFilter implements Filter {
-    private static final String reqMoji = "\ud83c\udfa0  \ud83c\udfa0  \ud83c\udfa0  \ud83c\udfa0  \ud83c\udfa0  ";
-    private static final String respMoji = "\ud83d\ude2e\u200d\ud83d\udca8  \ud83d\ude2e\u200d\ud83d\udca8  \ud83d\ude2e\u200d\ud83d\udca8  ";
     private static final Logger consoleLogger = LogManager.getLogger(ReportingFilter.class);
     private final Reporter reporter;
 

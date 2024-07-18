@@ -6,11 +6,12 @@ import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.CodeLanguage;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.observer.ExtentObserver;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import org.testng.ITestResult;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import org.testng.ITestResult;
 
 public class Reporter {
     public static String REPORTER = "reporter";
